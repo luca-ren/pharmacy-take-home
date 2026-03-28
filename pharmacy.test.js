@@ -7,6 +7,12 @@ describe("Pharmacy drugs", () => {
     );
   });
 
+  it("should decrease the benefit and expiresin", () => {
+    expect(new Pharmacy([new Drug("test", 1, 3)]).updateBenefitValue()).toEqual(
+      [new Drug("test", 0, 2)]
+    );
+  });
+
   it("should decrease the benefit twice as fast once expired", () => {
     expect(new Pharmacy([new Drug("test", 0, 3)]).updateBenefitValue()).toEqual(
       [new Drug("test", -1, 1)]
@@ -17,8 +23,8 @@ describe("Pharmacy drugs", () => {
 describe("Pharmacy Herbal Tea", () => {
   it("should increase the benefit and decrease expiresIn", () => {
     expect(
-      new Pharmacy([new Drug("Herbal Tea", 2, 3)]).updateBenefitValue()
-    ).toEqual([new Drug("Herbal Tea", 1, 4)]);
+      new Pharmacy([new Drug("Herbal Tea", 1, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Herbal Tea", 0, 4)]);
   });
 
   it("should increase the benefit twice as fast once expired", () => {
@@ -45,8 +51,8 @@ describe("Pharmacy Magic Pill", () => {
 describe("Pharmacy Fervex", () => {
   it("should increase the benefit and decrease expiresIn", () => {
     expect(
-      new Pharmacy([new Drug("Fervex", 12, 3)]).updateBenefitValue()
-    ).toEqual([new Drug("Fervex", 11, 4)]);
+      new Pharmacy([new Drug("Fervex", 11, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Fervex", 10, 4)]);
   });
 
   it("should increase the benefit twice as fast when there are 10 to 6 day till expiration and decrease expiresIn", () => {
@@ -55,10 +61,22 @@ describe("Pharmacy Fervex", () => {
     ).toEqual([new Drug("Fervex", 9, 5)]);
   });
 
+  it("should increase the benefit twice as fast when there are 10 to 6 day till expiration and decrease expiresIn", () => {
+    expect(
+      new Pharmacy([new Drug("Fervex", 6, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Fervex", 5, 5)]);
+  });
+
   it("should increase the benefit thrice as fast when there are 5 to 1 day till expiration and decrease expiresIn", () => {
     expect(
-      new Pharmacy([new Drug("Fervex", 4, 3)]).updateBenefitValue()
-    ).toEqual([new Drug("Fervex", 3, 6)]);
+      new Pharmacy([new Drug("Fervex", 5, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Fervex", 4, 6)]);
+  });
+
+  it("should increase the benefit thrice as fast when there are 5 to 1 day till expiration and decrease expiresIn", () => {
+    expect(
+      new Pharmacy([new Drug("Fervex", 1, 3)]).updateBenefitValue()
+    ).toEqual([new Drug("Fervex", 0, 6)]);
   });
 
   it("should drop the benefit to 0 when expired", () => {
@@ -77,8 +95,8 @@ describe("Pharmacy Fervex", () => {
 describe("Pharmacy Dafalgan", () => {
   it("should decrease the benefit twice as fast", () => {
     expect(
-      new Pharmacy([new Drug("Dafalgan", 5, 13)]).updateBenefitValue()
-    ).toEqual([new Drug("Dafalgan", 4, 11)]);
+      new Pharmacy([new Drug("Dafalgan", 1, 13)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", 0, 11)]);
   });
 
   it("should decrease the benefit four time as fast when expired", () => {
