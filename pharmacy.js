@@ -42,7 +42,7 @@ export class Pharmacy {
   }
 
   updateNormalDrug(drug) {
-    drug.expiresIn < 0
+    drug.expiresIn < 1
       ? this.decreaseBenefit(drug, 2)
       : this.decreaseBenefit(drug, 1);
   }
@@ -51,32 +51,32 @@ export class Pharmacy {
   updateMagicalPill(drug) {}
 
   updateHerbalTea(drug) {
-    drug.expiresIn < 0
+    drug.expiresIn < 1
       ? this.increaseBenefit(drug, 2)
       : this.increaseBenefit(drug, 1);
   }
 
   updateFervex(drug) {
-    if (drug.expiresIn >= 10) this.increaseBenefit(drug, 1);
-    else if (drug.expiresIn < 10 && drug.expiresIn >= 5)
+    if (drug.expiresIn > 10) this.increaseBenefit(drug, 1);
+    else if (drug.expiresIn < 11 && drug.expiresIn > 5)
       this.increaseBenefit(drug, 2);
-    else if (drug.expiresIn < 5 && drug.expiresIn >= 0)
+    else if (drug.expiresIn < 6 && drug.expiresIn > 0)
       this.increaseBenefit(drug, 3);
     else drug.benefit = 0;
   }
 
   updateDafalgan(drug) {
-    drug.expiresIn < 0
+    drug.expiresIn < 1
       ? this.decreaseBenefit(drug, 4)
       : this.decreaseBenefit(drug, 2);
   }
 
   updateBenefitValue() {
     this.drugs.forEach((drug) => {
+      this.updateDrug(drug);
       if (drug.name != "Magic Pill") {
         drug.expiresIn = drug.expiresIn - 1;
       }
-      this.updateDrug(drug);
     });
 
     return this.drugs;
