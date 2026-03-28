@@ -84,6 +84,6 @@ describe("Pharmacy Dafalgan", () => {
   it("should decrease the benefit four time as fast when expired", () => {
     expect(
       new Pharmacy([new Drug("Dafalgan", 0, 13)]).updateBenefitValue()
-    ).toEqual([new Drug("Dafalgan", 0, 9)]);
+    ).toEqual([new Drug("Dafalgan", -1, 9)]);
   });
 });
