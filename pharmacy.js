@@ -57,12 +57,11 @@ export class Pharmacy {
   }
 
   updateFervex(drug) {
-    if (drug.expiresIn > 10) this.increaseBenefit(drug, 1);
-    else if (drug.expiresIn < 11 && drug.expiresIn > 5)
-      this.increaseBenefit(drug, 2);
-    else if (drug.expiresIn < 6 && drug.expiresIn > 0)
-      this.increaseBenefit(drug, 3);
-    else drug.benefit = 0;
+    if (drug.expiresIn < 1) {
+      drug.benefit = 0;
+    } else if (drug.expiresIn < 6) this.increaseBenefit(drug, 3);
+    else if (drug.expiresIn < 11) this.increaseBenefit(drug, 2);
+    else this.increaseBenefit(drug, 1);
   }
 
   updateDafalgan(drug) {
