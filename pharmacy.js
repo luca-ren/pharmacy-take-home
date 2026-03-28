@@ -74,7 +74,7 @@ export class Pharmacy {
   updateBenefitValue() {
     this.drugs.forEach((drug) => {
       this.updateDrug(drug);
-      if (drug.name != "Magic Pill") {
+      if (drug.name !== "Magic Pill") {
         drug.expiresIn = drug.expiresIn - 1;
       }
     });
